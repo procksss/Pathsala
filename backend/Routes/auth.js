@@ -77,7 +77,7 @@ router.post('/loginUser', [
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
-    if (!user || user.role!=="teacher") {
+    if (!user || user.role==="student") {
       success = false
       return res.status(400).json({success, error: "Please try to login with correct credentials" });
     }
@@ -90,12 +90,14 @@ router.post('/loginUser', [
 
     const data = {
       user: {
-        id: user.id
+        id: user.id,
+        role: user.role,
+        firstname: user.firstname
       }
     }
     const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
-    res.json({ success, authtoken })
+    res.json({ success, authtoken,data })
 
   } catch (error) {
     console.error(error.message);
@@ -158,7 +160,6 @@ router.get("/getalldata", fetchuser, async (req, res) => {
         let user = await User.findById(req.params.id)
         if(!user){
           res.status(404).send("user not found")
-  
         }
 
       user = await User.findByIdAndDelete(user.id)

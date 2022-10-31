@@ -16,6 +16,8 @@ export default function Login() {
     loginUser(data.email, data.password);
     if(Data.success){
       localStorage.setItem('token', Data.authtoken)
+      localStorage.setItem('role', Data.data.user.role)
+      localStorage.setItem('firstname', Data.data.user.firstname)
       navigate('/')
       showalert("Logined successfully","success" )
       }
@@ -31,7 +33,7 @@ export default function Login() {
   };
   return (
     <>
-      <div className="container m-5">
+      <div className="container m-5 " >
         <form onSubmit={handleclick} >
           <div className=" mb-3">
             <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">

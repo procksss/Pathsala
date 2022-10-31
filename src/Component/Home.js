@@ -41,14 +41,16 @@ export default function Home() {
 
     return (
    <>
+
    <button ref={ref} hidden={true} type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalupdate">
   
 </button>
-   <div className="modal fade" id="exampleModalupdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div className="modal fade" id="exampleModalupdate" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       <div className="modal-header">
       <div className="display-6 text-center my-1"><strong>Path</strong>sala Update </div>
+      
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={refclose} ></button>
       </div>
       <div className="modal-body">
@@ -84,7 +86,7 @@ export default function Home() {
   <div className="col-md-4">
   <label htmlFor="validationCustom02" className="form-label">Select your role</label>
   <select className="form-select" aria-label="Default select example" name="role" value={data.role} onChange={onchange} required>
-  <option selected >Select your role</option>
+  <option defaultValue >Select your role</option>
   <option value="student">student</option>
   <option value="teacher">teacher</option>
   </select>
@@ -98,6 +100,7 @@ export default function Home() {
   </div>
 </div>
   <h1 className="display-3 m-2 text-center"><strong>Path</strong>sala</h1>
+  {localStorage.getItem('role')==="admin"?<div className="text-center my-1" style={{"color":"red"}}>Loggined as ADMIN </div>:[]}
   <h4 className="display-6 my-2"><strong>User </strong>Details</h4>
   <table className="table table-dark table-striped">
   <thead>
@@ -108,7 +111,7 @@ export default function Home() {
       <th scope="col">Address</th>
       <th scope="col">Role</th>
       <th scope="col">Date Registered</th>
-      <th scope="col">Delete/Update</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>

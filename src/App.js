@@ -13,6 +13,7 @@ import{
 } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'
 import AuthState from './context/auths/AuthState';
+import Footer from './Component/Footer';
 
 
 
@@ -28,17 +29,18 @@ function App() {
     
     <AuthState>
      <Router>
-      <Navbar/>
+      <Navbar setprogress={setprogress}/>
       <Alert/>
-      {/* <LoadingBar color='#f11946' progress={progress} onLoaderFinished={() => setloading(0)} height={3}/> */}
+      {/* <LoadingBar color={"rgb(0, 255, 226)"} progress={progress} onLoaderFinished={() => setloading(0)} height={3}/> */}
       <div className="container">
       <Routes>
       <Route exact path="/" element={<Home/>} />
       <Route path="/about" element={<About progress={setloading} onLoaderFinished={() => setloading(0)}/>} />
       <Route exact path="/login" element={<Login />} />
-      {/* <Route exact path="/signup" element={<Signup/>} /> */}
+      <Route exact path="/signup" element={<Signup/>} />
       </Routes>
       </div>
+      <Footer></Footer>
     </Router>
     </AuthState>
 

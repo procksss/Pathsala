@@ -62,12 +62,25 @@ export default function Navbar () {
      
 <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
   SignUp
-</button></div>:<div><button type="button" className="btn btn-info" onClick={handlelogout}>
+</button></div>:
+        <div class="btn-group">
+  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+  <img src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" width={40} height={40}/>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-lg-end " style={{"text-align" : "center"}}>
+    
+  <li><strong>{localStorage.getItem('firstname')}</strong></li>
+          <li><hr class="dropdown-divider"/></li>
+
+            <li><button type="button" className="btn btn-info mx-auto" onClick={handlelogout}>
   logout
-</button></div>}
+</button></li>
+  </ul>
+</div>
+        }
 
 
-<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       <div className="modal-header">
@@ -115,7 +128,7 @@ export default function Navbar () {
   <div className="col-md-4">
   <label htmlFor="validationCustom02" className="form-label">Select your role</label>
   <select className="form-select" aria-label="Default select example" name="role" value={data.role} onChange={onchange} required>
-  <option selected >Select your role</option>
+  <option defaultValue >Select your role</option>
   <option value="student">student</option>
   <option value="teacher">teacher</option>
   </select>
